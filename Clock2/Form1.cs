@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
+using System.Data.SQLite;
 
 namespace Clock2
 {
@@ -18,11 +18,11 @@ namespace Clock2
         public Form1()
         {
             InitializeComponent();
-            label1.Text = DateTime.Now.ToString("hh:mm:ss");
+            label1.Text = ("    " + DateTime.Now.ToString("hh:mm:ss"));
             label2.Text = DateTime.Now.ToString("d");
             label3.Text = DateTime.Now.ToString("dddd");
-            //Current();
         }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -36,47 +36,68 @@ namespace Clock2
             switch (i)
             {
                 case int n when (n < 20)://Current time
-                    label1.Text = DateTime.Now.ToString("hh:mm:ss");
+                    Current();
                     break;
 
                 case int n when (n < 30)://Time to end of day
-                    DateTime end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 20, 00, 0);
-                    TimeSpan timeLeft = end - DateTime.Now;
-                    if (timeLeft.Seconds < 0)
-                    {
-                        label1.Text = "End Of Day";
-                    }
-                    else
-                    {
-                        label1.Text = (timeLeft.ToString(@"hh\:mm\:ss") + System.Environment.NewLine + " to go");
-                    }
+                    EOD();
                     break;
 
                 case int n when (n < 40)://Time to end of week
-                    DateTime today = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 20, 0, 0);
-                    DateTime endOfWeek = today.AddDays((DayOfWeek.Friday - today.DayOfWeek + 7) % 7);
-                    TimeSpan timeleft = endOfWeek - DateTime.Now;
-
-                    if (timeleft.Seconds < 0)
-                    {
-                        label1.Text = "End Of Week";
-                    }
-                    else
-                    {
-                        label1.Text = (timeleft.Days + " days and " + timeleft.ToString(@"hh\:mm\:ss") + " to go");
-                    }
+                    EOW();
                     break;
 
-                case int n when (n < 50)://Time to next Holiday
+                case int n when (n < 0)://Time to next Holiday
+                    NextHoliday();
                     break;
 
-                case int n when (n >= 50):
-                    label1.Text = DateTime.Now.ToString("hh:mm:ss");
+                case int n when (n >= 5):
+                    label1.Text = ("    " + DateTime.Now.ToString("hh:mm:ss"));
                     i = 0;
                     break;
             }
 
             i++;
+        }
+
+        private void Current()
+        {
+            label1.Text = ("    " + DateTime.Now.ToString("hh:mm:ss"));
+        }
+
+        private void EOD()
+        {
+            DateTime end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 20, 00, 0);
+            TimeSpan timeLeft = end - DateTime.Now;
+            if (timeLeft.Seconds < 0)
+            {
+                label1.Text = "End Of Day";
+            }
+            else
+            {
+                label1.Text = ("    " + timeLeft.ToString(@"hh\:mm\:ss") + System.Environment.NewLine + "Until end of day");
+            }
+        }
+
+        private void EOW()
+        {
+            DateTime today = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 20, 0, 0);
+            DateTime endOfWeek = today.AddDays((DayOfWeek.Friday - today.DayOfWeek + 7) % 7);
+            TimeSpan timeleft = endOfWeek - DateTime.Now;
+
+            if (timeleft.Seconds < 0)
+            {
+                label1.Text = "    End Of Week";
+            }
+            else
+            {
+                label1.Text = ("    " + timeleft.Days + ":" + timeleft.ToString(@"hh\:mm\:ss") + System.Environment.NewLine + "Until the weekend");
+            }
+        }
+
+        private void NextHoliday()
+        {
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
