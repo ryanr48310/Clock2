@@ -33,6 +33,9 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.curTempLab = new System.Windows.Forms.Label();
+            this.highTempLab = new System.Windows.Forms.Label();
+            this.lowTempLab = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -71,11 +74,42 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Wednesday";
             // 
+            // curTempLab
+            // 
+            this.curTempLab.AutoSize = true;
+            this.curTempLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.curTempLab.Location = new System.Drawing.Point(28, 25);
+            this.curTempLab.Name = "curTempLab";
+            this.curTempLab.Size = new System.Drawing.Size(97, 55);
+            this.curTempLab.TabIndex = 3;
+            this.curTempLab.Text = "00°";
+            // 
+            // highTempLab
+            // 
+            this.highTempLab.AutoSize = true;
+            this.highTempLab.Location = new System.Drawing.Point(35, 80);
+            this.highTempLab.Name = "highTempLab";
+            this.highTempLab.Size = new System.Drawing.Size(51, 13);
+            this.highTempLab.TabIndex = 4;
+            this.highTempLab.Text = "High: 00°";
+            // 
+            // lowTempLab
+            // 
+            this.lowTempLab.AutoSize = true;
+            this.lowTempLab.Location = new System.Drawing.Point(35, 104);
+            this.lowTempLab.Name = "lowTempLab";
+            this.lowTempLab.Size = new System.Drawing.Size(49, 13);
+            this.lowTempLab.TabIndex = 5;
+            this.lowTempLab.Text = "Low: 00°";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(698, 287);
+            this.Controls.Add(this.lowTempLab);
+            this.Controls.Add(this.highTempLab);
+            this.Controls.Add(this.curTempLab);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -93,6 +127,9 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label curTempLab;
+        private System.Windows.Forms.Label highTempLab;
+        private System.Windows.Forms.Label lowTempLab;
     }
 }
 
