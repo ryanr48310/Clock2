@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using System;
+using System.Net;
 using System.Windows.Forms;
-using System.Data.SQLite;
 
 namespace Clock2
 {
     public partial class Form1 : Form
     {
         int i = 0;
+        int w = 0;
 
         public Form1()
         {
@@ -21,6 +16,7 @@ namespace Clock2
             label1.Text = ("    " + DateTime.Now.ToString("hh:mm:ss"));
             label2.Text = DateTime.Now.ToString("d");
             label3.Text = DateTime.Now.ToString("dddd");
+            getWeather();
         }
 
 
@@ -54,10 +50,15 @@ namespace Clock2
                 case int n when (n >= 5):
                     label1.Text = ("    " + DateTime.Now.ToString("hh:mm:ss"));
                     i = 0;
+                    if(w >= 600)
+                    {
+                        getWeather();
+                    }
                     break;
             }
 
             i++;
+            w++;
         }
 
         private void Current()
@@ -103,6 +104,24 @@ namespace Clock2
         private void Form1_Load(object sender, EventArgs e)
         {
             timer1.Start();
+        }
+
+        void getWeather()
+        {
+            using(WebClient web = new WebClient())
+            {
+                string url = "https://api.openweathermap.org/data/2.5/weather?q=Auburn Hills&appid=82c547004040411051e4dd6722f99e58&units=imperial";
+                var json = web.DownloadString(url);
+                Weather.root Info = JsonConvert.DeserializeObject<Weather.root>(json);
+
+                int temp = Convert.ToInt32(Info.main.temp);
+                int high = Convert.ToInt32(Info.main.temp_max);
+                int low = Convert.ToInt32(Info.main.temp_min);
+
+                curTempLab.Text = temp.ToString() + "°";
+                highTempLab.Text = "High: " + high.ToString() + "°";
+                lowTempLab.Text = "Low: " + low.ToString() + "°";
+            }
         }
     }
 }
