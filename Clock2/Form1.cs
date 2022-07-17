@@ -13,9 +13,9 @@ namespace Clock2
         public Form1()
         {
             InitializeComponent();
-            label1.Text = ("    " + DateTime.Now.ToString("hh:mm:ss"));
-            label2.Text = DateTime.Now.ToString("d");
-            label3.Text = DateTime.Now.ToString("dddd");
+            timeLab.Text = ("    " + DateTime.Now.ToString("hh:mm:ss"));
+            dateLab.Text = DateTime.Now.ToString("d");
+            dayLab.Text = DateTime.Now.ToString("dddd");
             getWeather();
         }
 
@@ -27,8 +27,8 @@ namespace Clock2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label2.Text = DateTime.Now.ToString("d");
-            label3.Text = DateTime.Now.ToString("dddd");
+            dateLab.Text = DateTime.Now.ToString("d");
+            dayLab.Text = DateTime.Now.ToString("dddd");
             switch (i)
             {
                 case int n when (n < 20)://Current time
@@ -43,12 +43,12 @@ namespace Clock2
                     EOW();
                     break;
 
-                case int n when (n < 0)://Time to next Holiday
+                case int n when (n < 50)://Time to next Holiday
                     NextHoliday();
                     break;
 
                 case int n when (n >= 5):
-                    label1.Text = ("    " + DateTime.Now.ToString("hh:mm:ss"));
+                    timeLab.Text = ("    " + DateTime.Now.ToString("hh:mm:ss"));
                     i = 0;
                     if(w >= 600)
                     {
@@ -63,7 +63,7 @@ namespace Clock2
 
         private void Current()
         {
-            label1.Text = ("    " + DateTime.Now.ToString("hh:mm:ss"));
+            timeLab.Text = ("    " + DateTime.Now.ToString("hh:mm:ss"));
         }
 
         private void EOD()
@@ -72,11 +72,11 @@ namespace Clock2
             TimeSpan timeLeft = end - DateTime.Now;
             if (timeLeft.Seconds < 0)
             {
-                label1.Text = "End Of Day";
+                timeLab.Text = "End Of Day";
             }
             else
             {
-                label1.Text = ("    " + timeLeft.ToString(@"hh\:mm\:ss") + System.Environment.NewLine + "Until end of day");
+                timeLab.Text = ("    " + timeLeft.ToString(@"hh\:mm\:ss") + System.Environment.NewLine + "Until end of day");
             }
         }
 
@@ -86,19 +86,25 @@ namespace Clock2
             DateTime endOfWeek = today.AddDays((DayOfWeek.Friday - today.DayOfWeek + 7) % 7);
             TimeSpan timeleft = endOfWeek - DateTime.Now;
 
-            if (timeleft.Seconds < 0)
+            if (timeleft.Seconds < 0 || DateTime.Now.DayOfWeek == DayOfWeek.Saturday || DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
             {
-                label1.Text = "    End Of Week";
+                timeLab.Text = "   End Of Week";
             }
             else
             {
-                label1.Text = ("    " + timeleft.Days + ":" + timeleft.ToString(@"hh\:mm\:ss") + System.Environment.NewLine + "Until the weekend");
+                timeLab.Text = ("    " + timeleft.Days + ":" + timeleft.ToString(@"hh\:mm\:ss") + System.Environment.NewLine + "Until the weekend");
             }
         }
 
         private void NextHoliday()
         {
+            HolidayModel nextHoliday = SqliteDataAccess.getNext();
 
+            DateTime d = DateTime.ParseExact(nextHoliday.date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+
+            TimeSpan timeLeft = d - DateTime.Now;
+
+            timeLab.Text = ("    " + timeLeft.Days + ":" + timeLeft.ToString(@"hh\:mm\:ss") + System.Environment.NewLine + "Until " + nextHoliday.name);
         }
 
         private void Form1_Load(object sender, EventArgs e)
