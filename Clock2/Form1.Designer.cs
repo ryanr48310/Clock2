@@ -29,50 +29,50 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
+            this.timeLab = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.dateLab = new System.Windows.Forms.Label();
+            this.dayLab = new System.Windows.Forms.Label();
             this.curTempLab = new System.Windows.Forms.Label();
             this.highTempLab = new System.Windows.Forms.Label();
             this.lowTempLab = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // timeLab
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(168, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(264, 55);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "    00:00:00";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.timeLab.AutoSize = true;
+            this.timeLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeLab.Location = new System.Drawing.Point(168, 40);
+            this.timeLab.Name = "timeLab";
+            this.timeLab.Size = new System.Drawing.Size(264, 55);
+            this.timeLab.TabIndex = 0;
+            this.timeLab.Text = "    00:00:00";
+            this.timeLab.Click += new System.EventHandler(this.label1_Click);
             // 
             // timer1
             // 
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label2
+            // dateLab
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(35, 199);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(266, 55);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "00/00/0000";
+            this.dateLab.AutoSize = true;
+            this.dateLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateLab.Location = new System.Drawing.Point(35, 199);
+            this.dateLab.Name = "dateLab";
+            this.dateLab.Size = new System.Drawing.Size(266, 55);
+            this.dateLab.TabIndex = 1;
+            this.dateLab.Text = "00/00/0000";
             // 
-            // label3
+            // dayLab
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(399, 199);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(279, 55);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Wednesday";
+            this.dayLab.AutoSize = true;
+            this.dayLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dayLab.Location = new System.Drawing.Point(399, 199);
+            this.dayLab.Name = "dayLab";
+            this.dayLab.Size = new System.Drawing.Size(279, 55);
+            this.dayLab.TabIndex = 2;
+            this.dayLab.Text = "Wednesday";
             // 
             // curTempLab
             // 
@@ -106,13 +106,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(698, 287);
+            this.ClientSize = new System.Drawing.Size(682, 287);
             this.Controls.Add(this.lowTempLab);
             this.Controls.Add(this.highTempLab);
             this.Controls.Add(this.curTempLab);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dayLab);
+            this.Controls.Add(this.dateLab);
+            this.Controls.Add(this.timeLab);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -123,10 +123,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label timeLab;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label dateLab;
+        private System.Windows.Forms.Label dayLab;
         private System.Windows.Forms.Label curTempLab;
         private System.Windows.Forms.Label highTempLab;
         private System.Windows.Forms.Label lowTempLab;
