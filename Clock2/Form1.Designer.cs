@@ -36,18 +36,20 @@
             this.curTempLab = new System.Windows.Forms.Label();
             this.highTempLab = new System.Windows.Forms.Label();
             this.lowTempLab = new System.Windows.Forms.Label();
+            this.configBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // timeLab
             // 
             this.timeLab.AutoSize = true;
+            this.timeLab.BackColor = System.Drawing.Color.Transparent;
             this.timeLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeLab.ForeColor = System.Drawing.Color.Black;
             this.timeLab.Location = new System.Drawing.Point(168, 40);
             this.timeLab.Name = "timeLab";
             this.timeLab.Size = new System.Drawing.Size(264, 55);
             this.timeLab.TabIndex = 0;
             this.timeLab.Text = "    00:00:00";
-            this.timeLab.Click += new System.EventHandler(this.label1_Click);
             // 
             // timer1
             // 
@@ -57,6 +59,7 @@
             // dateLab
             // 
             this.dateLab.AutoSize = true;
+            this.dateLab.BackColor = System.Drawing.Color.Transparent;
             this.dateLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateLab.Location = new System.Drawing.Point(35, 199);
             this.dateLab.Name = "dateLab";
@@ -67,6 +70,7 @@
             // dayLab
             // 
             this.dayLab.AutoSize = true;
+            this.dayLab.BackColor = System.Drawing.Color.Transparent;
             this.dayLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dayLab.Location = new System.Drawing.Point(399, 199);
             this.dayLab.Name = "dayLab";
@@ -77,6 +81,7 @@
             // curTempLab
             // 
             this.curTempLab.AutoSize = true;
+            this.curTempLab.BackColor = System.Drawing.Color.Transparent;
             this.curTempLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.curTempLab.Location = new System.Drawing.Point(28, 25);
             this.curTempLab.Name = "curTempLab";
@@ -87,6 +92,7 @@
             // highTempLab
             // 
             this.highTempLab.AutoSize = true;
+            this.highTempLab.BackColor = System.Drawing.Color.Transparent;
             this.highTempLab.Location = new System.Drawing.Point(35, 80);
             this.highTempLab.Name = "highTempLab";
             this.highTempLab.Size = new System.Drawing.Size(51, 13);
@@ -96,23 +102,38 @@
             // lowTempLab
             // 
             this.lowTempLab.AutoSize = true;
+            this.lowTempLab.BackColor = System.Drawing.Color.Transparent;
             this.lowTempLab.Location = new System.Drawing.Point(35, 104);
             this.lowTempLab.Name = "lowTempLab";
             this.lowTempLab.Size = new System.Drawing.Size(49, 13);
             this.lowTempLab.TabIndex = 5;
             this.lowTempLab.Text = "Low: 00°";
             // 
+            // configBtn
+            // 
+            this.configBtn.Location = new System.Drawing.Point(539, 40);
+            this.configBtn.Name = "configBtn";
+            this.configBtn.Size = new System.Drawing.Size(74, 26);
+            this.configBtn.TabIndex = 6;
+            this.configBtn.Text = "Settings";
+            this.configBtn.UseVisualStyleBackColor = true;
+            this.configBtn.Click += new System.EventHandler(this.configBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Clock2.Properties.Resources.background;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(682, 287);
+            this.Controls.Add(this.configBtn);
             this.Controls.Add(this.lowTempLab);
             this.Controls.Add(this.highTempLab);
             this.Controls.Add(this.curTempLab);
             this.Controls.Add(this.dayLab);
             this.Controls.Add(this.dateLab);
             this.Controls.Add(this.timeLab);
+            this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -130,6 +151,7 @@
         private System.Windows.Forms.Label curTempLab;
         private System.Windows.Forms.Label highTempLab;
         private System.Windows.Forms.Label lowTempLab;
+        private System.Windows.Forms.Button configBtn;
     }
 }
 
