@@ -32,7 +32,7 @@ namespace Clock2
             var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var settings = configFile.AppSettings.Settings;
 
-            if (Regex.IsMatch(EOD, @"^[0-2][0-3]:[0-5][0-9]"))
+            if (Regex.IsMatch(EOD, @"^[0-2][0-9]:[0-5][0-9]"))
             {
                 settings["EOD"].Value = EOD;
             }
