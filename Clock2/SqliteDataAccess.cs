@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
@@ -24,6 +22,14 @@ namespace Clock2
                 h = l[0];
 
                 return h;
+            }
+        }
+
+        public static void SaveDay(HolidayModel holiday)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("insert into Holiday (Name, Date) values (@name, @date)", holiday);
             }
         }
 
