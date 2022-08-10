@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using System.Globalization;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,11 +29,12 @@ namespace Clock2
             string EOD = timeBox.Text;
             string location = locationBox.Text;
             string wCode = codeBox.Text;
+            DateTime dateResult;
 
             var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var settings = configFile.AppSettings.Settings;
 
-            if (Regex.IsMatch(EOD, @"^[0-2][0-9]:[0-5][0-9]"))
+            if (DateTime.TryParse(EOD, CultureInfo.CreateSpecificCulture("en-US"), DateTimeStyles.None, out dateResult))
             {
                 settings["EOD"].Value = EOD;
             }
